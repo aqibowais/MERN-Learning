@@ -1,16 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%- include('./partials/head.ejs') %>
     <title>TheSoloJourney</title>
+  </head>
+  <body>
+    <%- include('./partials/nav.ejs') %> <% if (locals.user) { %>
+    <div class="container mt-5">
+      <h1>Welcome, <%= JSON.stringify(locals.user.fullname)%>!</h1>
+      <p>This is your personal blog space.</p>
+    </div>
+    <% } %> 
+    <% if (locals.allBlogs) { %> <% if (locals.allBlogs.length!=0) { %>
+    <!-- show all blogs image placeholder title and body in form of card -->
+    <div class="container mt-5 ">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <% locals.allBlogs.forEach(blog => { %>
+        <div class="col-md-3 mb-3">
+          <div class="card shadow" style="max-width: 18rem">
+            <img
+              src="<%= `${blog.coverImageUrl}`%>"
+              class="card-img-top"
+              alt="<%= blog.title %>"
+              style="height: 160px; object-fit: cover"
+            />
+            <div class="card-body">
+              <h6 class="card-title"><%= blog.title %></h6>
+              <!-- <p class="card-text small"><%= blog.body.substring(0, 60) %>...</p> -->
+              <a
+                href="/blog/<%= blog.id %>"
+                class="btn btn-primary btn-sm"
+                >Read More</a
+              >
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+    <% } else { %>
+    <div class="container mt-5">
+      <div class="alert alert-info" role="alert">
+        No blogs available at the moment.
+      </div>
+    </div>
 
-</head>
-<body>
-    <%- include('./partials/nav.ejs') %>
-    
-    <%- include('./partials/scripts.ejs') %>
+    <% } %> <% } else { %>
+    <div class="container mt-5">
+      <div class="alert alert-info" role="alert">
+        Please try to Signin to view blogs.
+      </div>
+    </div>
 
-</body>
+    <% } %> <%- include('./partials/scripts.ejs') %>
+  </body>
 </html>
