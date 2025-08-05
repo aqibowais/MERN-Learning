@@ -1,0 +1,19 @@
+//add a setting.json for this project to disable blackbox and github copilot extensions
+{
+    "blackbox.enabled": false,
+    "github.copilot.nextEditSuggestions.enabled": false,
+    // disable all copilot suggestions
+    "github.copilot.suggestionMode": "off",
+    // disable copilot for this workspace
+    "github.copilot.enable":{
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "javascript": false
+    },
+    "github.copilot.enableForWorkspace": false,
+    // disable copilot for this workspace
+    
+
+}

@@ -1,0 +1,7 @@
+# add all .env and node_modules directories to .gitignore for inner folders as well
+# node_modules directories
+**/node_modules
+# Ignore all .env files in any directory 
+**/.env
+
+
